@@ -6,6 +6,10 @@ pipeline {
             args  '--entrypoint='
          }
      }
+     options{
+         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+         credentialsId: 'AWS-KEY', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+     }
     stages {
         stage('init terraform') {
             steps {
